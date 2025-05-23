@@ -1,33 +1,29 @@
-public class Personajes {
+import java.util.Random;
 
-    public static void main(String[] args) {
-        // Crear personajes
-        HechiceroArcano hechicero = new HechiceroArcano("Morgath", 7);
-        Espartano espartano = new Espartano("Ares");
-        Berserker berserker = new Berserker("Thorg", 12);
+public abstract class Personaje {
+    protected String nombre;
+    protected int vida;
+    protected Random random;
 
-        System.out.println("\n--- Estado Inicial ---");
-        hechicero.mostrarEstado();
-        System.out.println();
-        espartano.mostrarEstado();
-        System.out.println();
-        berserker.mostrarEstado();
-
-        System.out.println("\n--- Combate ---");
-
-        // Turnos de combate simples
-        hechicero.lanzarHechizo("Rayo Arcano");
-        berserker.recibirDanio(30);
-
-        berserker.atacar(hechicero);
-
-        espartano.atacar(berserker);
-
-        System.out.println("\n--- Estado Final ---");
-        hechicero.mostrarEstado();
-        System.out.println();
-        espartano.mostrarEstado();
-        System.out.println();
-        berserker.mostrarEstado();
+    public Personaje(String nombre, int vida) {
+        this.nombre = nombre;
+        this.vida = vida;
+        this.random = new Random();
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public boolean estaVivo() {
+        return vida > 0;
+    }
+
+    public void recibirDanio(int cantidad) {
+        vida -= cantidad;
+        vida = Math.max(vida, 0);
+        System.out.println(nombre + " recibe " + cantidad + " de daño. Vida restante: " + vida);
+    }
+
+    public abstract void mostrarEstado();
 }
