@@ -1,30 +1,26 @@
 public class Main {
-
     public static void main(String[] args) {
-        // Crear personajes
         HechiceroArcano hechicero = new HechiceroArcano("Merlín", 5);
         Espartano espartano = new Espartano("Leonidas");
+        Berserker berserker = new Berserker("Thorg", 12);
 
-        // Mostrar estados iniciales
-        System.out.println("\nEstado inicial:");
+        System.out.println("\n--- Estado Inicial ---");
         hechicero.mostrarEstado();
         System.out.println();
         espartano.mostrarEstado();
+        System.out.println();
+        berserker.mostrarEstado();
 
-        // Combate simple
-        System.out.println("\n--- ¡Empieza el combate! ---\n");
+        System.out.println("\n--- Combate ---");
+        hechicero.lanzarHechizo("Bola de fuego", berserker);
+        berserker.atacar(hechicero);
+        espartano.atacar(berserker);
 
-        // Turno del hechicero
-        hechicero.lanzarHechizo("Bola de fuego");
-        espartano.recibirDanio(25);
-
-        // Turno del espartano
-        espartano.atacar(hechicero);
-
-        // Mostrar estados finales
-        System.out.println("\nEstado final:");
+        System.out.println("\n--- Estado Final ---");
         hechicero.mostrarEstado();
         System.out.println();
         espartano.mostrarEstado();
+        System.out.println();
+        berserker.mostrarEstado();
     }
 }
